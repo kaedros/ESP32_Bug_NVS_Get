@@ -5,6 +5,10 @@
 #include "nvs_flash.h"
 
 void app_main() {
+    // Time guard to ensure that the firmware did not run between flashing and opening the serial port
+    // We can use a "make flash simple_monitor" but we can't close the monitor
+    vTaskDelay(10000);
+
     // Initialize NVS
     esp_err_t err = nvs_flash_init();
     if (err == ESP_ERR_NVS_NO_FREE_PAGES || err == ESP_ERR_NVS_NEW_VERSION_FOUND) {

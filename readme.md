@@ -1,5 +1,9 @@
 ## ESP32 NVS_Get_i32
 
+## Solution
+The friends from Espressif warned us that the program starts running on the board immediately after flashing and when it time to open the monitor the value is already set.
+To work around this, either develop a timeguard on boot or use simple_monitor after flash.
+
 ## Problem Description
 In this code, we are trying to read a key on the NVS partition. It initially doesn't exist in the flash and we want to initialize it as a certain value.
 After running the software for the first time, the algorithm will act as if the value were already in the memory, even though the memory is blank.
